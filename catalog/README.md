@@ -118,11 +118,14 @@ never says which repo has which variant.
 | [response-cache-layer](other/response-cache-layer.md) | internal (Next.js cache primitives) | 1 | yes |
 | [listing-relevance-checker](other/listing-relevance-checker.md) | internal (browser automation) | 1 | partial |
 | [admin-nav-system](other/admin-nav-system.md) | internal (custom) | 1 | yes |
+| [admin-settings-editor](other/admin-settings-editor.md) | internal (custom) | 1 | yes |
 | [command-palette](other/command-palette.md) | internal (custom) | 1 | yes |
 | [swipe-card-engine](other/swipe-card-engine.md) | internal (custom) | 1 | yes |
 | [view-mode-card-fields](other/view-mode-card-fields.md) | internal (custom) | 1 | yes |
+| [super-admin-view-mode](other/super-admin-view-mode.md) | internal (custom) | 1 | yes |
 | [android-calendar-sync](other/android-calendar-sync.md) | Android (CalendarContract) | 1 | no |
 | [zxing-qrcode](other/zxing-qrcode.md) | ZXing | 1 | yes |
+| [suncalc-sunset-cutoffs](other/suncalc-sunset-cutoffs.md) | suncalc (npm) | 1 | yes |
 
 ## Shared patterns across repos (reuse candidates)
 
@@ -193,8 +196,9 @@ than by (unnamed) adopter:
 - **One cohesive internal feature set**: several single-adopter integrations (dead-listing
   detection via browser automation, an ownership-validated image upload/moderation pipeline,
   role-based admin navigation, a ⌘K command palette, a gesture-based swipe-card deck, a persisted
-  view-mode/card-field customization system, a two-tier response cache layer) happen to belong to
-  the same adopter and share patterns with each other more than with anything else in the catalog.
+  view-mode/card-field customization system, a session-scoped super-admin read-only tenant preview
+  mode, a two-tier response cache layer) happen to belong to the same adopter and share patterns
+  with each other more than with anything else in the catalog.
 - **Israel-market integrations**: Yad2/Facebook scraping sources, GovMap GIS, Bit/Paybox payment
   deep-links (static pre-generated links, no API/keys/webhooks), Bank of Israel
   exchange rates, classic reCAPTCHA v3, Hebrew-RTL server-side PDF rendering (working around a real
@@ -212,6 +216,11 @@ than by (unnamed) adopter:
   mirrored into a cloud database, and QR code generation for invite codes.
 - **Calendar deep-links (no-auth)**: `.ics` generation plus Google/Outlook calendar deep-links,
   distinct from the OAuth-based Google Calendar sync integration elsewhere in the catalog.
+- **Draft-state admin settings editor**
+  ([other/admin-settings-editor.md](other/admin-settings-editor.md)) — a multi-tab business
+  settings screen where the page-level orchestrator owns draft/dirty state and a sticky
+  save-bar, tab components stay purely presentational, and saves flow through one shared
+  patch-and-merge helper rather than a full refetch.
 - **Direct browser Notification API**: foreground-only alerts, complementary to (not a replacement
   for) the FCM background-push integration in the same adopter.
 - **Unimplemented/spec-only**: a designed-but-not-yet-built API for future generic third-party
