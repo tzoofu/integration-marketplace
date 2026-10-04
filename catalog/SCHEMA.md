@@ -20,6 +20,10 @@ Two integrations that share a provider but do genuinely different things get sep
 session with *zero access to the original source repos* could implement the same integration from
 this file alone: real setup steps, a generic sanitized code pattern, gotchas.
 
+A playbook may reference drop-in, copy-verbatim files (e.g. a complete CSS token file) kept in an
+optional `catalog/<category>/assets/` folder and linked from the playbook. Assets follow the same
+no-repo-identifiers rule as the markdown.
+
 ## File shape
 
 ```markdown

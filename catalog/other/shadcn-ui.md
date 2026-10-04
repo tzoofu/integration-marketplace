@@ -62,6 +62,8 @@ none — build-time CLI tool, no runtime configuration or API keys. (A private/c
 - Because there's no runtime network call, this integration produces zero attack surface or outage risk at runtime — it's purely a dev-time scaffolding convenience, unlike the rest of this catalog which tracks live external dependencies.
 - If `rtl: true` is set but the project's actual CSS isn't RTL-aware end-to-end, some generated components may render RTL utility classes that have no visible effect, giving a false sense of RTL support.
 
+- This entry only covers scaffolding. For the actual palette, dark mode, status-color registry and RTL conventions the generated components are styled with, see [design-system-semantic-tokens](design-system-semantic-tokens.md) (drop-in CSS: [assets/design-tokens.css](assets/design-tokens.css)).
+
 ### Playbook confidence: high
 
 ## Adoption

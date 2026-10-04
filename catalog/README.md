@@ -109,6 +109,7 @@ never says which repo has which variant.
 | [google-calendar](other/google-calendar.md) | Google | 1 | yes |
 | [calendar-deeplinks](other/calendar-deeplinks.md) | Google Calendar / Outlook + .ics | 1 | yes |
 | [shadcn-ui](other/shadcn-ui.md) | shadcn | 1 | partial |
+| [design-system-semantic-tokens](other/design-system-semantic-tokens.md) | internal (Tailwind v4 + shadcn/ui) | 1 | yes |
 | [pwa-manifest](other/pwa-manifest.md) | Web Platform (browser-native) | 1 | yes |
 | [chrome-origin-trial](other/chrome-origin-trial.md) | Google Chrome | 1 | no |
 | [google-search-console](other/google-search-console.md) | Google | 1 | yes |
@@ -221,6 +222,12 @@ than by (unnamed) adopter:
   settings screen where the page-level orchestrator owns draft/dirty state and a sticky
   save-bar, tab components stay purely presentational, and saves flow through one shared
   patch-and-merge helper rather than a full refetch.
+- **Semantic-token design system**
+  ([other/design-system-semantic-tokens.md](other/design-system-semantic-tokens.md), drop-in CSS in
+  [other/assets/design-tokens.css](other/assets/design-tokens.css)) — a Tailwind v4 CSS-first token
+  system with a green/cream-concrete palette, AA-tuned light and dark values, a single status-style
+  registry, a theme-override class, and RTL/hydration conventions. Pairs with
+  [shadcn-ui](other/shadcn-ui.md).
 - **Direct browser Notification API**: foreground-only alerts, complementary to (not a replacement
   for) the FCM background-push integration in the same adopter.
 - **Unimplemented/spec-only**: a designed-but-not-yet-built API for future generic third-party
