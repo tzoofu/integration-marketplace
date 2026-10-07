@@ -11,9 +11,9 @@ A designed-but-unbuilt endpoint that would let an external deal-source provider 
 ## Playbook
 
 ### Prerequisites
-- An existing Firestore collection modeling "sources" with a `subscriberUids: string[]` array users can self-add/remove (already shipped — see `packages/core/src/firebase/sources.ts`).
-- A Firebase Admin SDK server context capable of bypassing client Firestore rules (the repo already has this for its `/api/mcp` route, which this spec explicitly says to mirror).
-- An existing hashed-token pairing pattern to copy (`packages/core/src/firebase/tokens.ts` / `domain/pat.ts`): generate a random token, store only its SHA-256 hash, show the plaintext once.
+- An existing Firestore collection modeling "sources" with a `subscriberUids: string[]` array users can self-add/remove.
+- A Firebase Admin SDK server context capable of bypassing client Firestore rules (e.g. the same context an MCP route would use).
+- A hashed-token pairing pattern (same shape as the PAT flow in [mcp-server](mcp-server.md)): generate a random token, store only its SHA-256 hash, show the plaintext once.
 
 ### Setup steps
 1. Add a new collection (e.g. `sourceKeys/{sha256(key)}`) storing `{ sourceId, preview, createdAt }` — no client read/write; only an admin flow may create/delete, enforced in security rules. The API route reads it only via the Admin SDK.

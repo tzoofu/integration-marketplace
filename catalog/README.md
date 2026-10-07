@@ -145,9 +145,8 @@ shared package. Notable ones:
   ([database/firestore.md](database/firestore.md),
   [other/firebase-admin-sdk.md](other/firebase-admin-sdk.md)) — most adopters share the same
   server-only Admin SDK init pattern; a couple of outliers do pure client-SDK read+write with no
-  server layer at all. One adopter's checked-in security-rules file carries a comment marking part
-  of its documented ruleset as staged but **not yet deployed** — a reminder that checked-in rules
-  don't always match what's live in production.
+  server layer at all. Checked-in security rules don't always match what's deployed — verify the
+  live ruleset, not just the repo copy.
 - **Firebase Cloud Messaging** ([push-notifications/fcm-push.md](push-notifications/fcm-push.md))
   — near-identical token registration, stale-token cleanup, and dynamically-served service worker
   across the web adopters (two incompatible service-worker payload styles are in use, both

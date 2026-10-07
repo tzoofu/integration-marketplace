@@ -163,7 +163,7 @@ Native mobile (Android): none — config ships in a build-time `google-services.
 - `preferRest: true` on the Admin SDK's Firestore instance avoids the gRPC transport, which both speeds up serverless cold starts and is required on runtimes without raw TCP/TLS support (e.g. Cloudflare Workers).
 - Dynamically `import()` `firebase-admin/auth` (rather than a static top-level import) if your Admin SDK usage is otherwise Firestore-only — some serverless bundlers choke resolving `firebase-admin/auth`'s CommonJS/ESM-only dependency chain, breaking every route that merely imports the module.
 - A thin Cloud Functions layer using the Admin SDK can coexist with a pure-client-SDK app (Variant B) purely for server-triggered (`onWrite`/`onCreate`) or scheduled logic (e.g. recomputing budget-cap alerts, sending push notifications) — this doesn't turn the app into Variant A, since the client still reads/writes directly and rules remain the real authorization boundary.
-- Watch for security rules staged in the repo but explicitly **not yet deployed** (e.g. gated behind a comment and an expiry date) — read the rules file's own comments before assuming what's live in production matches what's checked in.
+- Checked-in rules and deployed rules can drift — deploy rules from CI (or verify in the console) instead of assuming the repo copy is live, and never leave Firebase's date-limited "test mode" rule in place.
 
 ### Playbook confidence: high
 

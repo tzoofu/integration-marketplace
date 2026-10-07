@@ -69,7 +69,8 @@ Gotchas too, still without naming which repo/project was unavailable>
 ## Adoption
 Used in **N** repo(s) in this marketplace. <0-3 sentences summarizing notable variation across
 those repos, in purely technical terms — no repo names, codenames, file paths, or
-business/domain-specific naming.>
+business/domain-specific naming. Never describe an adopter's current security state —
+undeployed/open rules, missing checks, unimplemented hardening, past incidents.>
 ```
 
 ## Categories (canonical list — extend only when nothing above fits)

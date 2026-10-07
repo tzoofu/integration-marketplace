@@ -9,6 +9,8 @@ Builds and maintains the integration catalog in this repo (`integration-marketpl
 
 **No repo names, project names, paths, or business-identifying details are ever written into any catalog file — not even as an anonymous codename.** The catalog must stay fully portable and never reveal which private repos it was sourced from. Track adoption as a count and describe variants in purely technical terms (e.g. "the native-mobile implementation skips VAPID"), never by which repo they came from.
 
+**Never record the security posture of a source repo.** This catalog is public. Don't write that an adopter currently has open/undeployed/expiring security rules, a missing auth check, unimplemented hardening, a reused signing secret, or a bug that "actually happened" — even anonymously, that tells a reader which live apps to probe. Turn every such finding into generic, forward-looking advice in Gotchas ("verify deployed rules match the repo copy"), and tell the user about the real issue in chat instead.
+
 Read `catalog/SCHEMA.md` first — it defines the file shape, the canonical category list, and exactly how to decide "bump existing file" vs "new file". Follow it exactly; only add a new category if truly nothing existing fits.
 
 **Every catalog file is a self-contained implementation playbook**, not just a usage map — it must read as actionable to someone with zero access to the source repos: real setup steps and a generic sanitized code pattern, not just "see `lib/foo.ts`". This means creating a new file requires actually reading the relevant source code, not just noting that a file exists.

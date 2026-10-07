@@ -71,8 +71,7 @@ export async function POST(req: Request) {
 ## Adoption
 Used in **4** repo(s) in this marketplace. All expose their own domain data/actions as MCP tools
 at a single `/api/mcp` endpoint, secured by an OAuth 2.1 Authorization Code + PKCE flow and/or
-Personal Access Tokens. Variation is mostly in JWT-signing-secret isolation (some reuse the app's
-existing session secret, one mints a dedicated OAuth secret and its own JWT signing rather than
-reusing it) and in tool scope — one adopter is deliberately read/organize-only by design, explicitly
+Personal Access Tokens. Variation is mostly in JWT-signing-secret strategy (shared session secret
+vs a dedicated OAuth secret — see Gotchas) and in tool scope — one adopter is deliberately read/organize-only by design, explicitly
 deferring any "send" action to a separate, dedicated messaging integration rather than implementing
 it itself.

@@ -175,7 +175,7 @@ async def on_document(update, context):
     await update.message.reply_text(render(result))
 ```
 
-**Optional hardening (recommended, not yet implemented by any adopter)**
+**Recommended hardening**
 ```python
 import time
 from collections import defaultdict, deque
