@@ -28,6 +28,7 @@ never says which repo has which variant.
 |---|---|---|---|
 | [whatsapp-deeplink](messaging/whatsapp-deeplink.md) | WhatsApp / Meta | 3 | yes |
 | [beeper-messaging](messaging/beeper-messaging.md) | Beeper | 1 | partial |
+| [telegram-bot](messaging/telegram-bot.md) | Telegram (python-telegram-bot v20) | 1 | yes |
 
 ### [scraping-source](scraping-source/)
 | Integration | Provider | Adopters | Reusable |
@@ -49,6 +50,7 @@ never says which repo has which variant.
 |---|---|---|---|
 | [openai-whisper](ai-llm/openai-whisper.md) | OpenAI | 1 | yes |
 | [gemini-summarization](ai-llm/gemini-summarization.md) | Google (Gemini via Vercel AI SDK) | 1 | yes |
+| [gemini-gated-structured-features](ai-llm/gemini-gated-structured-features.md) | Google (Gemini via `@google/genai`) | 1 | yes |
 | [pyannote-diarization](ai-llm/pyannote-diarization.md) | Hugging Face (pyannote.audio, local) | 1 | partial |
 
 ### [email-sms](email-sms/)
@@ -114,6 +116,7 @@ never says which repo has which variant.
 | [chrome-origin-trial](other/chrome-origin-trial.md) | Google Chrome | 1 | no |
 | [google-search-console](other/google-search-console.md) | Google | 1 | yes |
 | [google-fonts](other/google-fonts.md) | Google Fonts | 2 | yes |
+| [i18n-language-support](other/i18n-language-support.md) | next-intl / i18next / internal | 7 | yes |
 | [ffmpeg-audio-processing](other/ffmpeg-audio-processing.md) | FFmpeg project | 1 | yes |
 | [source-push-api](other/source-push-api.md) | internal (planned, spec-only) | 1 | no |
 | [response-cache-layer](other/response-cache-layer.md) | internal (Next.js cache primitives) | 1 | yes |
@@ -188,6 +191,14 @@ shared package. Notable ones:
   same share-with-clipboard-fallback pattern.
 - **Google Fonts (`next/font/google`)** ([other/google-fonts.md](other/google-fonts.md)) — both
   adopters load Hebrew-supporting typefaces the same way.
+- **i18n / language support** ([other/i18n-language-support.md](other/i18n-language-support.md)) —
+  every adopter supports exactly `he` + `en` with RTL for Hebrew; all but two default to `he`
+  (the native-mobile one follows the device locale and a chat SPA follows the browser language,
+  both falling back to `en`). Also covers mixed-direction user content and Hebrew FTS5 search. Locale storage
+  differs by shape (URL segment + cookie mirror, cookie-only, localStorage, device + persisted
+  setting), as does the library (next-intl, i18next, hand-rolled typed dictionary). Shared
+  extraction candidates: the locale constant/`dir` helper, a catalog-parity check, and
+  locale-explicit `Intl` formatting helpers.
 
 ## Single-adopter integrations (notable, not yet shared)
 
@@ -202,6 +213,12 @@ than by (unnamed) adopter:
   view-mode/card-field customization system, a session-scoped super-admin read-only tenant preview
   mode, a two-tier response cache layer) happen to belong to the same adopter and share patterns
   with each other more than with anything else in the catalog.
+- **Gated multi-user AI features**
+  ([ai-llm/gemini-gated-structured-features.md](ai-llm/gemini-gated-structured-features.md)) — Gemini
+  structured-JSON calls behind one server gate (kill switch → premium app key or encrypted
+  bring-your-own-key → durable per-user/per-scope/global daily quotas), with prompt-injection
+  fencing and code-over-model validation. The second Gemini adopter in the catalog, but a different
+  shape from the AI-SDK plain-text summarizer — watch for a third before extracting a shared client.
 - **Israel-market integrations**: Yad2/Facebook scraping sources, GovMap GIS, Bit/Paybox payment
   deep-links (static pre-generated links, no API/keys/webhooks), Bank of Israel
   exchange rates, classic reCAPTCHA v3, Hebrew-RTL server-side PDF rendering (working around a real
@@ -230,6 +247,10 @@ than by (unnamed) adopter:
   system with a green/cream-concrete palette, AA-tuned light and dark values, a single status-style
   registry, a theme-override class, and RTL/hydration conventions. Pairs with
   [shadcn-ui](other/shadcn-ui.md).
+- **Telegram bot as the whole UI** ([messaging/telegram-bot.md](messaging/telegram-bot.md)) — an
+  async long-polling bot (no web frontend, no inbound ports) with namespaced inline-keyboard
+  callbacks, opt-in consent + GDPR-style export/delete commands keyed by HMAC-pseudonymized user ids,
+  and per-user two-language localization; deployed as a single Docker Compose container.
 - **Direct browser Notification API**: foreground-only alerts, complementary to (not a replacement
   for) the FCM background-push integration in the same adopter.
 - **Unimplemented/spec-only**: a designed-but-not-yet-built API for future generic third-party
