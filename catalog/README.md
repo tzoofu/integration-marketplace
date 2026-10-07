@@ -127,6 +127,7 @@ never says which repo has which variant.
 | [android-calendar-sync](other/android-calendar-sync.md) | Android (CalendarContract) | 1 | no |
 | [zxing-qrcode](other/zxing-qrcode.md) | ZXing | 1 | yes |
 | [suncalc-sunset-cutoffs](other/suncalc-sunset-cutoffs.md) | suncalc (npm) | 1 | yes |
+| [onboarding-spotlight-tour](other/onboarding-spotlight-tour.md) | internal (custom) | 1 | yes |
 
 ## Shared patterns across repos (reuse candidates)
 
@@ -196,7 +197,8 @@ than by (unnamed) adopter:
 
 - **One cohesive internal feature set**: several single-adopter integrations (dead-listing
   detection via browser automation, an ownership-validated image upload/moderation pipeline,
-  role-based admin navigation, a ⌘K command palette, a gesture-based swipe-card deck, a persisted
+  role-based admin navigation, a ⌘K command palette, a gesture-based swipe-card deck, a data-driven
+  first-run spotlight onboarding tour ([other/onboarding-spotlight-tour.md](other/onboarding-spotlight-tour.md)), a persisted
   view-mode/card-field customization system, a session-scoped super-admin read-only tenant preview
   mode, a two-tier response cache layer) happen to belong to the same adopter and share patterns
   with each other more than with anything else in the catalog.
