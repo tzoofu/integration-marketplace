@@ -1,0 +1,256 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Drop-in semantic-token design system for Tailwind v4 (CSS-first, no tailwind.config.js)
+   + shadcn/ui. Green primary over a desaturated cream/concrete neutral, light + dark.
+   See catalog/other/design-system-semantic-tokens.md for how to wire fonts, the theme
+   provider and the status registry. Every text/background pair below was tuned to
+   WCAG AA (4.5:1 text, 3:1 focus ring) against --background, --card and --secondary. */
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Layer 1: raw ramps and status hues (utilities: bg-sand-100, text-ink-700, …) ── */
+@theme {
+  /* Named breakpoint so it sorts after md: by value — min-[1200px]: sorts before md: and loses. */
+  --breakpoint-wide: 75rem;
+
+  --color-brand-50: #eaf5ee;
+  --color-brand-500: #34c483;
+  --color-brand-600: #1faa6b;
+  --color-brand-700: #157f4f;
+
+  --color-sand-0: #ffffff;
+  --color-sand-50: #f6f6f4;
+  --color-sand-100: #f1f0ec;
+  --color-sand-200: #e4e3df;
+  --color-sand-300: #d3d1cb;
+  --color-sand-400: #a3a7ab;
+  --color-sand-600: #6b6f73;
+  --color-sand-700: #4b5155;
+  --color-sand-900: #24272a;
+
+  --color-ink-950: #101214;
+  --color-ink-900: #16181a;
+  --color-ink-800: #202325;
+  --color-ink-700: #2c3033;
+
+  /* Generic status hues. Light-mode values are already darkened for >=4.5:1 as text. */
+  --color-status-neutral: #737779;
+  --color-status-info: #2f6db8;
+  --color-status-positive: #168556;
+  --color-status-accent: #7c4ddf;
+  --color-status-caution: #9a6108;
+  --color-status-negative: #b8463f;
+  --color-status-muted: #77736e;
+
+  /* Text-on-tint variants: a status hue as text on its own /10–/18 tint can't reach 4.5:1,
+     so pills/tabs/buttons use these darker (light) / lighter (dark, below) mixes for text. */
+  --color-status-neutral-ink: color-mix(in oklab, var(--color-status-neutral) 65%, black);
+  --color-status-info-ink: color-mix(in oklab, var(--color-status-info) 65%, black);
+  --color-status-positive-ink: color-mix(in oklab, var(--color-status-positive) 65%, black);
+  --color-status-accent-ink: color-mix(in oklab, var(--color-status-accent) 65%, black);
+  --color-status-caution-ink: color-mix(in oklab, var(--color-status-caution) 65%, black);
+  --color-status-negative-ink: color-mix(in oklab, var(--color-status-negative) 65%, black);
+  --color-status-muted-ink: color-mix(in oklab, var(--color-status-muted) 65%, black);
+
+  --shadow-card: 0 1px 2px rgba(20, 22, 24, 0.05), 0 8px 24px -12px rgba(20, 22, 24, 0.14);
+  --shadow-card-hover: 0 2px 4px rgba(20, 22, 24, 0.07), 0 16px 40px -16px rgba(20, 22, 24, 0.22);
+}
+
+/* ── Layer 2: semantic tokens (utilities: bg-background, text-muted-foreground, …) ── */
+@theme inline {
+  /* Set --font-ui / --font-display on <html> via next/font (see the playbook). */
+  --font-sans: var(--font-ui);
+  --font-heading: var(--font-display);
+  --font-numeric: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ── Layer 3: values per theme ── */
+:root {
+  --radius: 1rem;
+  --background: #f6f6f4;
+  --foreground: #16181a;
+  --card: #ffffff;
+  --card-foreground: #16181a;
+  --popover: #ffffff;
+  --popover-foreground: #16181a;
+  --primary: #157f4f; /* brand-700: the lighter #1faa6b is only 2.99:1 with white text */
+  --primary-foreground: #ffffff;
+  --secondary: #f1f0ec;
+  --secondary-foreground: #16181a;
+  --muted: #f1f0ec;
+  --muted-foreground: #62666a; /* >=5:1 on background and secondary */
+  --accent: #eaf5ee;
+  --accent-foreground: #157f4f;
+  --destructive: #c42a4b; /* 5.5:1 on white */
+  --success: #157f4f;
+  --warning: #875505; /* >=5:1 on white and on its own /10 tint; the brighter amber is 2.4:1 */
+  --border: #e4e3df;
+  --input: #e4e3df;
+  --ring: #157f4f; /* focus indicators need 3:1 (WCAG 1.4.11); #34c483 is only 2.07:1 */
+  --chart-1: #34c483;
+  --chart-2: #2f6db8;
+  --chart-3: #ff8a3d;
+  --chart-4: #1faa6b;
+  --chart-5: #8b5cf6;
+  --sidebar: #f6f6f4;
+  --sidebar-foreground: #16181a;
+  --sidebar-primary: #157f4f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaf5ee;
+  --sidebar-accent-foreground: #157f4f;
+  --sidebar-border: #e4e3df;
+  --sidebar-ring: #157f4f;
+}
+
+.dark {
+  --background: #101214;
+  --foreground: #eceef0;
+  --card: #16181a;
+  --card-foreground: #eceef0;
+  --popover: #16181a;
+  --popover-foreground: #eceef0;
+  --primary: #25c07c;
+  --primary-foreground: #0c1210;
+  --secondary: #202325;
+  --secondary-foreground: #eceef0;
+  --muted: #202325;
+  --muted-foreground: #9aa0a4;
+  --accent: #202325;
+  --accent-foreground: #25c07c;
+  --destructive: #f06a85;
+  --success: #25c07c;
+  --warning: #ffa05c;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.14);
+  --ring: #25c07c;
+  --chart-1: #25c07c;
+  --chart-2: #5b9ef5;
+  --chart-3: #ffa05c;
+  --chart-4: #3cc488;
+  --chart-5: #a78bff;
+  --sidebar: #16181a;
+  --sidebar-foreground: #eceef0;
+  --sidebar-primary: #25c07c;
+  --sidebar-primary-foreground: #0c1210;
+  --sidebar-accent: #202325;
+  --sidebar-accent-foreground: #25c07c;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #25c07c;
+
+  /* The light-mode status hues were darkened for text contrast; on the dark card those
+     darker values fall below 4.5:1, so dark mode keeps brighter ones. */
+  --color-status-neutral: #9ca0a3;
+  --color-status-positive: #25c07c;
+  --color-status-accent: #a78bff;
+  --color-status-caution: #ffa05c;
+  --color-status-muted: #9a9691;
+  --color-status-negative: #e0736c;
+  --color-status-info: #5b9ef5;
+  --color-status-neutral-ink: color-mix(in oklab, var(--color-status-neutral) 60%, white);
+  --color-status-info-ink: color-mix(in oklab, var(--color-status-info) 60%, white);
+  --color-status-positive-ink: color-mix(in oklab, var(--color-status-positive) 60%, white);
+  --color-status-accent-ink: color-mix(in oklab, var(--color-status-accent) 60%, white);
+  --color-status-caution-ink: color-mix(in oklab, var(--color-status-caution) 60%, white);
+  --color-status-negative-ink: color-mix(in oklab, var(--color-status-negative) 60%, white);
+  --color-status-muted-ink: color-mix(in oklab, var(--color-status-muted) 60%, white);
+}
+
+/* ── Optional: accent override class. Put it on <body> (or any subtree) to swap the primary
+   family and fonts to blue without touching the green :root base. Status colors are
+   untouched, so "info" blue and the primary blue coexist. ── */
+.themed-accent {
+  --primary: #285f9f; /* not #2f6db8: as text on its own accent tint that is 4.37:1 */
+  --primary-foreground: #ffffff;
+  --accent: rgba(40, 95, 159, 0.08);
+  --accent-foreground: #285f9f;
+  --ring: #285f9f;
+  /* Optional per-subtree font swap (define --font-alt with next/font): */
+  /* --font-sans: var(--font-alt); --font-heading: var(--font-alt); --font-numeric: var(--font-alt); */
+}
+
+.dark .themed-accent {
+  --primary: #5b9ef5;
+  --primary-foreground: #0b1220;
+  --accent: rgba(91, 158, 245, 0.14);
+  --accent-foreground: #5b9ef5;
+  --ring: #5b9ef5;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* Mobile: html's overflow-x hidden alone doesn't stop browsers panning the page sideways
+   once pinch-zoom is allowed. `clip` (never `hidden`) on body so it does not become a
+   scroll container, which would break a sticky top nav. */
+html {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+body {
+  overflow-x: clip;
+}
+
+/* Honour the OS "reduce motion" setting globally instead of per-component variants. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
