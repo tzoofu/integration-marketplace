@@ -44,6 +44,9 @@ setup steps, a generic sanitized code pattern, env var names, gotchas.
   (`.claude/skills/map-integrations/SKILL.md`): delegate a read-only scan of the target repo, then for each
   integration either bump the matching file's Adoption count (and the README row) or create a new playbook from
   the repo's real source — never invented. Never edit the repo being mapped.
+- Implementing a playbook in another repo is done via the `implement-integration` skill
+  (`.claude/skills/implement-integration/SKILL.md`): it reads `catalog/` and writes only into the target repo,
+  never back into the catalog.
 - Only touch an existing `## Playbook` section when a new adopter reveals a meaningfully different variant or gotcha.
   A second adopter usually updates the `reusable` line to a concrete shared-package statement.
 - `Playbook confidence`: `high` = extracted from real local source; `medium` = single implementation, not

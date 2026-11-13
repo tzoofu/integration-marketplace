@@ -119,6 +119,7 @@ never says which repo has which variant.
 | [calendar-deeplinks](other/calendar-deeplinks.md) | Google Calendar / Outlook + .ics | 1 | yes |
 | [shadcn-ui](other/shadcn-ui.md) | shadcn | 2 | partial |
 | [design-system-semantic-tokens](other/design-system-semantic-tokens.md) | internal (Tailwind v4, optional shadcn/ui) | 2 | yes |
+| [cookie-driven-multi-theme-and-mode](other/cookie-driven-multi-theme-and-mode.md) | internal (Next.js + Tailwind v4, CSS oklch) | 1 | yes |
 | [pwa-manifest](other/pwa-manifest.md) | Web Platform (browser-native) | 2 | yes |
 | [chrome-origin-trial](other/chrome-origin-trial.md) | Google Chrome | 1 | no |
 | [webmcp-page-tools](other/webmcp-page-tools.md) | W3C WebMCP / Google Chrome | 1 | yes |
@@ -346,6 +347,7 @@ than by (unnamed) adopter:
   counterpart to [other/i18n-language-support.md](other/i18n-language-support.md)) and the pre-submit
   Play Console declarations and policy hosting
   ([other/play-console-compliance.md](other/play-console-compliance.md), now shared — see above).
+- **Web theming on top of semantic tokens**: cookie-driven named themes (hue-parametrized `oklch`) plus light/dark/system mode with no flash and no theme library ([other/cookie-driven-multi-theme-and-mode.md](other/cookie-driven-multi-theme-and-mode.md), extends [other/design-system-semantic-tokens.md](other/design-system-semantic-tokens.md)).
 - **Native Android (Compose) app building blocks**: named multi-theme palettes with follow-system and
   live switching ([other/compose-multi-theme-palettes.md](other/compose-multi-theme-palettes.md), the
   native-Android counterpart to
